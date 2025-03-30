@@ -28,28 +28,63 @@ function UserDashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen  dark:from-darkBg dark:via-gray-800 dark:to-darkBg p-8">
-      <h1 className="text-3xl font-bold text-blue-600 dark:text-darkText mb-8 text-center">Your Dashboard</h1>
+    <div
+      className="pt-[8rem] px-[5rem] min-h-screen"
+      style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
+    >
+      <h1 className="text-3xl font-bold mb-8 text-center">Your Dashboard</h1>
       <div className="mb-12">
-        <h2 className="text-2xl font-semibold text-gray-800 dark:text-darkText mb-4">Created Tickets</h2>
+        <h2 className="text-2xl font-semibold mb-4" style={{ color: 'var(--text-color)' }}>
+          Created Tickets
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {createdTickets.map((ticket) => (
-            <div key={ticket._id} className="bg-white dark:bg-darkCard p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-              <p><strong>From:</strong> {ticket.startLocation}</p>
-              <p><strong>To:</strong> {ticket.endLocation}</p>
-              <p><strong>Status:</strong> {ticket.status}</p>
+            <div
+              key={ticket._id}
+              className="p-6 rounded-lg shadow-md hover:shadow-lg transition-all"
+              style={{
+                backgroundColor: 'var(--bg-color)',
+                color: 'var(--text-color)',
+                border: '1px solid white',
+              }}
+            >
+              <p>
+                <strong>From:</strong> {ticket.startLocation}
+              </p>
+              <p>
+                <strong>To:</strong> {ticket.endLocation}
+              </p>
+              <p>
+                <strong>Status:</strong> {ticket.status}
+              </p>
             </div>
           ))}
         </div>
       </div>
       <div>
-        <h2 className="text-2xl font-semibold text-gray-800 dark:text-darkText mb-4">Requested Tickets</h2>
+        <h2 className="text-2xl font-semibold mb-4" style={{ color: 'var(--text-color)' }}>
+          Requested Tickets
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {requestedTickets.map((ticket) => (
-            <div key={ticket._id} className="bg-white dark:bg-darkCard p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-              <p><strong>From:</strong> {ticket.startLocation}</p>
-              <p><strong>To:</strong> {ticket.endLocation}</p>
-              <p><strong>Created By:</strong> {ticket.createdBy.username}</p>
+            <div
+              key={ticket._id}
+              className="p-6 rounded-lg shadow-md hover:shadow-lg transition-all"
+              style={{
+                backgroundColor: 'var(--bg-color)',
+                color: 'var(--text-color)',
+                border: '1px solid white',
+              }}
+            >
+              <p>
+                <strong>From:</strong> {ticket.startLocation}
+              </p>
+              <p>
+                <strong>To:</strong> {ticket.endLocation}
+              </p>
+              <p>
+                <strong>Created By:</strong> {ticket.createdBy.username}
+              </p>
             </div>
           ))}
         </div>

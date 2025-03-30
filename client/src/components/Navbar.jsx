@@ -1,7 +1,17 @@
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function Navbar() {
   const navigate = useNavigate();
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('token'); // Clear the token
@@ -42,12 +52,26 @@ function Navbar() {
                 Dashboard
               </NavLink>
               <button
+                onClick={toggleTheme}
+                className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+              >
+                {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+              </button>
+              <button
                 onClick={handleLogout}
                 className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all"
               >
                 Logout
               </button>
             </>
+          )}
+          {!token && (
+            <button
+              onClick={toggleTheme}
+              className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+            >
+              {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+            </button>
           )}
         </div>
       </div>

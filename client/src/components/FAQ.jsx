@@ -23,9 +23,9 @@ function FAQ() {
   ];
 
   return (
-    <div className="bg-gray-50 py-20">
+    <div className="bg-gray-50 py-20" style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center text-blue-600 mb-12">Frequently Asked Questions</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div
@@ -41,6 +41,10 @@ function FAQ() {
                 className={`mt-2 text-gray-600 transition-all duration-300 ease-in-out overflow-hidden ${
                   openIndex === index ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
                 }`}
+                style={{ 
+                  backgroundColor: 'var(--bg-color)',
+                  color: 'var(--text-color)',
+                }}
               >
                 {openIndex === index && <p>{faq.answer}</p>}
               </div>

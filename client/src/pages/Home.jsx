@@ -4,14 +4,14 @@ function Home() {
   return (
     <div className="">
       {/* Hero Section */}
-      <section className="text-center pt-[4rem] px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center">
-        <h1 className="text-6xl font-extrabold text-gray-900 mb-6">
+      <section className="text-center pt-[10vh] px-4 sm:px-6 lg:px-8 min-h-[90vh] flex flex-col items-center justify-center">
+        <h1 className="text-6xl font-extrabold mb-6" style={{ color: 'var(--text-color)' }}>
           Welcome to
           <span className="bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
             TicketApp
           </span>
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10">
+        <p className="text-xl max-w-2xl mx-auto mb-10" style={{ color: 'var(--text-color)' }}>
           Buy and sell train tickets easily among peers. Simplify your travel plans with TicketApp.
         </p>
         <div className="flex justify-center space-x-6">
@@ -29,13 +29,26 @@ function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="bg-gradient-to-b from-gray-50 to-white py-20 mt-16 w-full">
+      <section
+        className="py-20 mt-16 w-full"
+        style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-blue-600 mb-12">
+          <h2
+            className="text-3xl font-bold text-center mb-12"
+            style={{ color: 'var(--text-color)' }}
+          >
             Why Choose TicketApp?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="bg-white/50 backdrop-blur-sm p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100">
+            <div
+              className="p-8 rounded-xl shadow-sm hover:shadow-md transition-all"
+              style={{
+                backgroundColor: 'var(--bg-color)',
+                color: 'var(--text-color)',
+                border: '1px solid white',
+              }}
+            >
               <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -52,14 +65,21 @@ function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--text-color)' }}>
                 Easy Ticket Creation
               </h3>
-              <p className="text-gray-600">
+              <p style={{ color: 'var(--text-color)' }}>
                 Create ticket openings effortlessly and manage your travel plans with ease.
               </p>
             </div>
-            <div className="bg-white/50 backdrop-blur-sm p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100">
+            <div
+              className="p-8 rounded-xl shadow-sm hover:shadow-md transition-all"
+              style={{
+                backgroundColor: 'var(--bg-color)',
+                color: 'var(--text-color)',
+                border: '1px solid white',
+              }}
+            >
               <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -81,14 +101,21 @@ function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--text-color)' }}>
                 Browse Openings
               </h3>
-              <p className="text-gray-600">
+              <p style={{ color: 'var(--text-color)' }}>
                 Explore available tickets and find the perfect match for your travel needs.
               </p>
             </div>
-            <div className="bg-white/50 backdrop-blur-sm p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100">
+            <div
+              className="p-8 rounded-xl shadow-sm hover:shadow-md transition-all"
+              style={{
+                backgroundColor: 'var(--bg-color)',
+                color: 'var(--text-color)',
+                border: '1px solid white',
+              }}
+            >
               <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -105,10 +132,10 @@ function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--text-color)' }}>
                 Seamless Requests
               </h3>
-              <p className="text-gray-600">
+              <p style={{ color: 'var(--text-color)' }}>
                 Request tickets with a single click and simplify your ticketing process.
               </p>
             </div>

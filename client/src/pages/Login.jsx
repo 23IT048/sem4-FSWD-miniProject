@@ -34,8 +34,16 @@ function Login() {
 
   return (
     <div className="pt-[4rem] min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h1 className="text-2xl font-bold text-blue-600 mb-6 text-center">Login</h1>
+      <div 
+        className="p-8 rounded-lg shadow-lg max-w-md w-full"
+        style={{ 
+          backgroundColor: 'var(--bg-color)',
+          color: 'var(--text-color)',
+          border: '1px solid white',
+        }}
+        
+      >
+        <h1 className="text-2xl font-bold text-blue-500 mb-6 text-center">Login</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
