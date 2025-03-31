@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --bg-color: white;
+  --bg-color: #eeeeee;
+  --card-color: #ffffff;
   --text-color: black;
 }
 
 .dark {
-  --bg-color: #333f56;
+  --bg-color: #303030;
+  --card-color: #424242;
   --text-color: white;
 }
 

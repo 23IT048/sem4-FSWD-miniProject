@@ -43,9 +43,8 @@ function UserDashboard() {
               key={ticket._id}
               className="p-6 rounded-lg shadow-md hover:shadow-lg transition-all"
               style={{
-                backgroundColor: 'var(--bg-color)',
+                backgroundColor: 'var(--card-color)',
                 color: 'var(--text-color)',
-                border: '1px solid white',
               }}
             >
               <p>
@@ -71,9 +70,8 @@ function UserDashboard() {
               key={ticket._id}
               className="p-6 rounded-lg shadow-md hover:shadow-lg transition-all"
               style={{
-                backgroundColor: 'var(--bg-color)',
+                backgroundColor: 'var(--card-color)',
                 color: 'var(--text-color)',
-                border: '1px solid white',
               }}
             >
               <p>

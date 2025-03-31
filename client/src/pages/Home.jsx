@@ -44,9 +44,8 @@ function Home() {
             <div
               className="p-8 rounded-xl shadow-sm hover:shadow-md transition-all"
               style={{
-                backgroundColor: 'var(--bg-color)',
+                backgroundColor: 'var(--card-color)',
                 color: 'var(--text-color)',
-                border: '1px solid white',
               }}
             >
               <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
@@ -75,9 +74,8 @@ function Home() {
             <div
               className="p-8 rounded-xl shadow-sm hover:shadow-md transition-all"
               style={{
-                backgroundColor: 'var(--bg-color)',
+                backgroundColor: 'var(--card-color)',
                 color: 'var(--text-color)',
-                border: '1px solid white',
               }}
             >
               <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
@@ -111,9 +109,8 @@ function Home() {
             <div
               className="p-8 rounded-xl shadow-sm hover:shadow-md transition-all"
               style={{
-                backgroundColor: 'var(--bg-color)',
+                backgroundColor: 'var(--card-color)',
                 color: 'var(--text-color)',
-                border: '1px solid white',
               }}
             >
               <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-6">

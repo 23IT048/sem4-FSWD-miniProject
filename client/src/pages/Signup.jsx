@@ -37,9 +37,8 @@ function Signup() {
       <div 
         className="p-8 rounded-lg shadow-lg max-w-md w-full"
         style={{ 
-          backgroundColor: 'var(--bg-color)',
+          backgroundColor: 'var(--card-color)',
           color: 'var(--text-color)',
-          border: '1px solid white',
         }}
       >
         <h1 className="text-2xl font-bold text-blue-500 mb-6 text-center">Signup</h1>

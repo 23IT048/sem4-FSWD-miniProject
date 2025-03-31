@@ -23,15 +23,18 @@ function FAQ() {
   ];
 
   return (
-    <div className="bg-gray-50 py-20" style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}>
+    <div className="bg-gray-50 py-20" style={{ backgroundColor: 'var(--bg-color)'}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-gray-300 rounded-lg p-4 hover:border-blue-500 transition-all max-w-3xl mx-auto cursor-pointer"
+              className="rounded-lg p-4 hover:border border-blue-500 transition-all max-w-3xl mx-auto cursor-pointer"
               onClick={() => toggleFAQ(index)} // Make the entire card clickable
+              style={{
+                  backgroundColor: 'var(--card-color)',
+              }}
             >
               <div className="flex justify-between items-center">
                 <h3 className="text-lg font-semibold">{faq.question}</h3>
@@ -42,7 +45,7 @@ function FAQ() {
                   openIndex === index ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
                 }`}
                 style={{ 
-                  backgroundColor: 'var(--bg-color)',
+                  backgroundColor: 'var(--card-color)',
                   color: 'var(--text-color)',
                 }}
               >
