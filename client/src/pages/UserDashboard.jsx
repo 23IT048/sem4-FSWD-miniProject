@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function UserDashboard() {
   const [createdTickets, setCreatedTickets] = useState([]);
   const [requestedTickets, setRequestedTickets] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -26,6 +28,10 @@ function UserDashboard() {
     fetchCreatedTickets();
     fetchRequestedTickets();
   }, []);
+
+  const handleEdit = (id) => {
+    navigate(`/edit-ticket/${id}`); // Navigate to the edit page
+  };
 
   return (
     <div
@@ -52,8 +58,27 @@ function UserDashboard() {
                 <strong>To:</strong> {ticket.endLocation}
               </p>
               <p>
-                <strong>Status:</strong> {ticket.status}
+                <strong>Departure:</strong> {new Date(ticket.departureTime).toLocaleString()}
               </p>
+              <p>
+                <strong>Arrival:</strong> {new Date(ticket.arrivalTime).toLocaleString()}
+              </p>
+              <p>
+                <strong>Status:</strong>{' '}
+                <span
+                  className={`px-2 py-1 rounded-lg text-white font-semibold ${
+                    ticket.status === 'available' ? 'bg-green-500' : 'bg-red-500'
+                  }`}
+                >
+                  {ticket.status === 'available' ? 'Available' : 'Sold Out'}
+                </span>
+              </p>
+              <button
+                onClick={() => handleEdit(ticket._id)}
+                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 mt-4 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg w-full"
+              >
+                Edit
+              </button>
             </div>
           ))}
         </div>
@@ -75,6 +100,12 @@ function UserDashboard() {
               </p>
               <p>
                 <strong>To:</strong> {ticket.endLocation}
+              </p>
+              <p>
+                <strong>Departure:</strong> {new Date(ticket.departureTime).toLocaleString()}
+              </p>
+              <p>
+                <strong>Arrival:</strong> {new Date(ticket.arrivalTime).toLocaleString()}
               </p>
               <p>
                 <strong>Created By:</strong> {ticket.createdBy.username}

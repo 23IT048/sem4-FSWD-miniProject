@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
+import EditTicket from './pages/EditTicket';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -58,6 +59,14 @@ function App() {
           element={
             <PrivateRoute>
               <UserDashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/edit-ticket/:id"
+          element={
+            <PrivateRoute>
+              <EditTicket />
             </PrivateRoute>
           }
         />

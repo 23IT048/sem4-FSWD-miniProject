@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function BrowseOpenings() {
   const [tickets, setTickets] = useState([]);
+  const navigate = useNavigate();
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -25,6 +28,10 @@ function BrowseOpenings() {
     } else {
       alert('Failed to send request');
     }
+  };
+
+  const handleEdit = (id) => {
+    navigate(`/edit-ticket/${id}`); // Navigate to the edit page
   };
 
   return (
@@ -55,12 +62,32 @@ function BrowseOpenings() {
             <p>
               <strong>Arrival:</strong> {new Date(ticket.arrivalTime).toLocaleString()}
             </p>
-            <button
-              onClick={() => handleRequest(ticket._id)}
-              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 mt-4 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg w-full"
-            >
-              Request Ticket
-            </button>
+            <p>
+              <strong>Status:</strong>{' '}
+              <span
+                className={`px-2 py-1 rounded-lg text-white font-semibold ${
+                  ticket.status === 'available' ? 'bg-green-500' : 'bg-red-500'
+                }`}
+              >
+                {ticket.status === 'available' ? 'Available' : 'Sold Out'}
+              </span>
+            </p>
+            {ticket.createdBy._id === userId ? (
+              <button
+                onClick={() => handleEdit(ticket._id)}
+                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 mt-4 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg w-full"
+              >
+                Edit Ticket
+              </button>
+            ) : (
+              <button
+                onClick={() => handleRequest(ticket._id)}
+                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 mt-4 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg w-full"
+                disabled={ticket.createdBy._id === userId || ticket.status !== 'available'}
+              >
+                Request Ticket
+              </button>
+            )}
           </div>
         ))}
       </div>

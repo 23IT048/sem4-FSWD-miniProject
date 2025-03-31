@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 function Login() {
   const [form, setForm] = useState({ username: '', password: '' });
   const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -24,8 +25,9 @@ function Login() {
     });
     const data = await response.json();
     if (response.ok) {
-      localStorage.setItem('token', data.token);
-      navigate('/');
+      localStorage.setItem('token', data.token); // Store the token
+      localStorage.setItem('userId', data.userId); // Store the userId
+      navigate('/'); // Redirect to home
     } else {
       alert(data.error);
     }
@@ -66,11 +68,11 @@ function Login() {
           </button>
         </form>
         <p className="mt-4 text-center">
-                        Don't have an account?{' '}
-              <Link to="/signup" className="text-blue-500 underline">
-                Sign up
-              </Link>
-                    </p>
+          Don't have an account?{' '}
+          <Link to="/signup" className="text-blue-500 underline">
+            Sign up
+          </Link>
+        </p>
       </div>
     </div>
   );
