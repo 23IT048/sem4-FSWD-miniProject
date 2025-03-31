@@ -7,10 +7,9 @@ function UserDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-
     const fetchCreatedTickets = async () => {
-      const response = await fetch('http://localhost:5000/my-tickets', {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:5000/tickets/my-tickets', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -18,7 +17,8 @@ function UserDashboard() {
     };
 
     const fetchRequestedTickets = async () => {
-      const response = await fetch('http://localhost:5000/requested-tickets', {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:5000/tickets/requested-tickets', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
