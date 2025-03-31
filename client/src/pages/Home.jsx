@@ -14,14 +14,14 @@ function Home() {
         <p className="text-xl max-w-2xl mx-auto mb-10" style={{ color: 'var(--text-color)' }}>
           Buy and sell train tickets easily among peers. Simplify your travel plans with TicketApp.
         </p>
-        <div className="flex justify-center space-x-6">
+        <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
           <Link to="/create-opening">
-            <button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg">
+            <button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg w-full md:w-auto">
               Create Opening
             </button>
           </Link>
           <Link to="/browse-openings">
-            <button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg">
+            <button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg w-full md:w-auto">
               Browse Openings
             </button>
           </Link>

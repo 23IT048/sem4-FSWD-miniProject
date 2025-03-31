@@ -29,15 +29,13 @@ function UserDashboard() {
 
   return (
     <div
-      className="pt-[8rem] px-[5rem] min-h-screen"
+      className="mt-[10rem] px-4 sm:px-8 min-h-screen"
       style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
     >
       <h1 className="text-3xl font-bold mb-8 text-center">Your Dashboard</h1>
       <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4" style={{ color: 'var(--text-color)' }}>
-          Created Tickets
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-2xl font-semibold mb-4">Created Tickets</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {createdTickets.map((ticket) => (
             <div
               key={ticket._id}
@@ -61,10 +59,8 @@ function UserDashboard() {
         </div>
       </div>
       <div>
-        <h2 className="text-2xl font-semibold mb-4" style={{ color: 'var(--text-color)' }}>
-          Requested Tickets
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-2xl font-semibold mb-4">Requested Tickets</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {requestedTickets.map((ticket) => (
             <div
               key={ticket._id}

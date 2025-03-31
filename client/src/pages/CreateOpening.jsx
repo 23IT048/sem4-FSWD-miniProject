@@ -34,10 +34,10 @@ function CreateOpening() {
   };
 
   return (
-    <div className="pt-[4rem] min-h-screen flex items-center justify-center">
-      <div 
+    <div className="pt-[4rem] min-h-screen flex items-center justify-center px-4 sm:px-8">
+      <div
         className="p-8 rounded-lg shadow-lg max-w-md w-full"
-        style={{ 
+        style={{
           backgroundColor: 'var(--card-color)',
           color: 'var(--text-color)',
         }}

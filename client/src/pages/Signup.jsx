@@ -33,7 +33,7 @@ function Signup() {
   };
 
   return (
-    <div className="pt-[4rem] min-h-screen  flex items-center justify-center">
+    <div className="pt-[4rem] min-h-screen  flex items-center justify-center px-4 sm:px-8">
       <div 
         className="p-8 rounded-lg shadow-lg max-w-md w-full"
         style={{ 

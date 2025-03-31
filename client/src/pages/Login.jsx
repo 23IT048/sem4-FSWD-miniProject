@@ -4,7 +4,6 @@ import { useNavigate, Link } from 'react-router-dom';
 function Login() {
   const [form, setForm] = useState({ username: '', password: '' });
   const navigate = useNavigate();
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -33,14 +32,13 @@ function Login() {
   };
 
   return (
-    <div className="pt-[4rem] min-h-screen flex items-center justify-center">
-      <div 
+    <div className="pt-[4rem] min-h-screen flex items-center justify-center px-4 sm:px-8">
+      <div
         className="p-8 rounded-lg shadow-lg max-w-md w-full"
-        style={{ 
+        style={{
           backgroundColor: 'var(--card-color)',
           color: 'var(--text-color)',
         }}
-        
       >
         <h1 className="text-2xl font-bold text-blue-500 mb-6 text-center">Login</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -68,11 +66,11 @@ function Login() {
           </button>
         </form>
         <p className="mt-4 text-center">
-          Don't have an account?{' '}
-          <Link to="/signup" className="text-blue-500 underline">
-            Sign up
-          </Link>
-        </p>
+                        Don't have an account?{' '}
+              <Link to="/signup" className="text-blue-500 underline">
+                Sign up
+              </Link>
+                    </p>
       </div>
     </div>
   );
