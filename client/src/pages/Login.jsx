@@ -27,6 +27,7 @@ function Login() {
     if (response.ok) {
       localStorage.setItem('token', data.token); // Store the token
       localStorage.setItem('userId', data.userId); // Store the userId
+      localStorage.setItem('username', form.username); // Store the username for display
       navigate('/'); // Redirect to home
     } else {
       alert(data.error);

@@ -1,12 +1,29 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function Home() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleButtonClick = (path) => {
+    if (isLoggedIn) {
+      navigate(path);
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <div className="">
       {/* Hero Section */}
       <section className="text-center pt-[10vh] px-4 sm:px-6 lg:px-8 min-h-[90vh] flex flex-col items-center justify-center">
         <h1 className="text-6xl font-extrabold mb-6" style={{ color: 'var(--text-color)' }}>
-          Welcome to
+          Welcome to{' '}
           <span className="bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
             TicketApp
           </span>
@@ -15,16 +32,18 @@ function Home() {
           Buy and sell train tickets easily among peers. Simplify your travel plans with TicketApp.
         </p>
         <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-          <Link to="/create-opening">
-            <button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg w-full md:w-auto">
-              Create Opening
-            </button>
-          </Link>
-          <Link to="/browse-openings">
-            <button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg w-full md:w-auto">
-              Browse Openings
-            </button>
-          </Link>
+          <button 
+            onClick={() => handleButtonClick('/create-opening')}
+            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg w-full md:w-auto"
+          >
+            Create Opening
+          </button>
+          <button
+            onClick={() => handleButtonClick('/browse-openings')} 
+            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg w-full md:w-auto"
+          >
+            Browse Openings
+          </button>
         </div>
       </section>
 

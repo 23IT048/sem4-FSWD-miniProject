@@ -7,11 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-client/node_modules/
-client/package-lock.json
-server/node_modules/
-server/package-lock.json
-*.env
+node_modules/
+package-lock.json
+.env
 dist
 dist-ssr
 *.local

@@ -12,32 +12,25 @@ import Footer from './components/Footer';
 import EditTicket from './pages/EditTicket';
 
 function App() {
-  const token = localStorage.getItem('token');
-
   return (
     <Router>
       <Navbar />
       <Routes>
-        {/* Public Routes */}
-        {!token && <Route path="/login" element={<Login />} />}
-        {!token && <Route path="/signup" element={<Signup />} />}
-        
-        {/* Redirect to login if not authenticated */}
-        {!token && <Route path="*" element={<Navigate to="/login" />} />}
-
-        {/* Private Routes */}
+        {/* Public Routes accessible to all users */}
         <Route
           path="/"
           element={
-            <PrivateRoute>
-              <>
-                <Home />
-                <FAQ />
-                <Footer />
-              </>
-            </PrivateRoute>
+            <>
+              <Home />
+              <FAQ />
+              <Footer />
+            </>
           }
         />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        
+        {/* Protected Routes - Require Authentication */}
         <Route
           path="/create-opening"
           element={
@@ -70,6 +63,9 @@ function App() {
             </PrivateRoute>
           }
         />
+        
+        {/* Fallback route */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
