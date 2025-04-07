@@ -78,6 +78,9 @@ function BrowseOpenings() {
                 <strong>Arrival:</strong> {new Date(ticket.arrivalTime).toLocaleString()}
               </p>
               <p>
+                <strong>Price:</strong> ₹{ticket.price}
+              </p>
+              <p>
                 <strong>Status:</strong>{' '}
                 <span
                   className={`px-2 py-1 rounded-lg text-white font-semibold ${

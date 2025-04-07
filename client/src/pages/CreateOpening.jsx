@@ -7,6 +7,8 @@ function CreateOpening() {
     endLocation: '',
     departureTime: '',
     arrivalTime: '',
+    price: '', // Add price to the form state
+    contactNumber: '', // Add contactNumber to the form state
   });
   const navigate = useNavigate();
 
@@ -71,6 +73,22 @@ function CreateOpening() {
             type="datetime-local"
             name="arrivalTime"
             value={form.arrivalTime}
+            onChange={handleChange}
+            className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="number"
+            name="price"
+            placeholder="Price (in ₹)"
+            value={form.price}
+            onChange={handleChange}
+            className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="text"
+            name="contactNumber"
+            placeholder="Contact Number"
+            value={form.contactNumber}
             onChange={handleChange}
             className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
           />

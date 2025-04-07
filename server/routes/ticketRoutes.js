@@ -6,9 +6,29 @@ const router = express.Router();
 
 // Create Ticket
 router.post('/', authenticate, async (req, res) => {
-  const ticket = new Ticket({ ...req.body, createdBy: req.user.id });
-  await ticket.save();
-  res.status(201).send(ticket);
+  const { startLocation, endLocation, departureTime, arrivalTime, price, contactNumber } = req.body;
+
+  // Validate required fields
+  if (!startLocation || !endLocation || !departureTime || !arrivalTime || !price || !contactNumber) {
+    return res.status(400).send({ error: 'All fields are required' });
+  }
+
+  try {
+    const ticket = new Ticket({
+      startLocation,
+      endLocation,
+      departureTime,
+      arrivalTime,
+      price,
+      contactNumber,
+      createdBy: req.user.id,
+    });
+
+    await ticket.save();
+    res.status(201).send(ticket);
+  } catch (error) {
+    res.status(500).send({ error: 'Server error', details: error.message });
+  }
 });
 
 // Get All Tickets

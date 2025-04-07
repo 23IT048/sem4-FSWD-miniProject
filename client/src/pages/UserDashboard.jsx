@@ -79,6 +79,9 @@ function UserDashboard() {
                   <strong>Arrival:</strong> {new Date(ticket.arrivalTime).toLocaleString()}
                 </p>
                 <p>
+                  <strong>Price:</strong> ₹{ticket.price}
+                </p>
+                <p>
                   <strong>Status:</strong>{' '}
                   <span
                     className={`px-2 py-1 rounded-lg text-white font-semibold ${
@@ -125,6 +128,9 @@ function UserDashboard() {
                 </p>
                 <p>
                   <strong>Arrival:</strong> {new Date(ticket.arrivalTime).toLocaleString()}
+                </p>
+                <p>
+                  <strong>Price:</strong> ₹{ticket.price}
                 </p>
                 <p>
                   <strong>Created By:</strong> {ticket.createdBy.username}

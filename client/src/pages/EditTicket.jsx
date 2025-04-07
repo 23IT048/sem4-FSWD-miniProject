@@ -8,6 +8,8 @@ function EditTicket() {
     endLocation: '',
     departureTime: '',
     arrivalTime: '',
+    price: '', // Add price to the state
+    contactNumber: '', // Add contactNumber to the state
   });
   const navigate = useNavigate();
 
@@ -42,6 +44,8 @@ function EditTicket() {
           endLocation: data.endLocation || '',
           departureTime: data.departureTime ? formatDateTime(data.departureTime) : '',
           arrivalTime: data.arrivalTime ? formatDateTime(data.arrivalTime) : '',
+          price: data.price || '', // Populate price
+          contactNumber: data.contactNumber || '', // Populate contactNumber
         });
       } catch (error) {
         console.error('Error fetching ticket:', error);
@@ -129,6 +133,22 @@ function EditTicket() {
             type="datetime-local"
             name="arrivalTime"
             value={form.arrivalTime}
+            onChange={handleChange}
+            className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="number"
+            name="price"
+            placeholder="Price (in ₹)"
+            value={form.price}
+            onChange={handleChange}
+            className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="text"
+            name="contactNumber"
+            placeholder="Contact Number"
+            value={form.contactNumber}
             onChange={handleChange}
             className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
