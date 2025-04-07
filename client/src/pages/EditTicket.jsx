@@ -8,9 +8,10 @@ function EditTicket() {
     endLocation: '',
     departureTime: '',
     arrivalTime: '',
-    price: '', // Add price to the state
-    contactNumber: '', // Add contactNumber to the state
+    price: '',
+    contactNumber: '',
   });
+  const [ticket, setTicket] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +31,7 @@ function EditTicket() {
         }
 
         const data = await response.json();
+        setTicket(data);
 
         // Format the datetime values to match "yyyy-MM-ddThh:mm" in local time
         const formatDateTime = (dateString) => {
@@ -44,8 +46,8 @@ function EditTicket() {
           endLocation: data.endLocation || '',
           departureTime: data.departureTime ? formatDateTime(data.departureTime) : '',
           arrivalTime: data.arrivalTime ? formatDateTime(data.arrivalTime) : '',
-          price: data.price || '', // Populate price
-          contactNumber: data.contactNumber || '', // Populate contactNumber
+          price: data.price || '',
+          contactNumber: data.contactNumber || '',
         });
       } catch (error) {
         console.error('Error fetching ticket:', error);
@@ -92,6 +94,24 @@ function EditTicket() {
       navigate('/dashboard');
     } else {
       alert('Failed to delete ticket');
+    }
+  };
+
+  const handleMarkAsSold = async () => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`http://localhost:5000/tickets/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ ...form, status: 'sold' }),
+    });
+    if (response.ok) {
+      alert('Ticket marked as sold');
+      navigate('/dashboard');
+    } else {
+      alert('Failed to mark ticket as sold');
     }
   };
 
@@ -152,6 +172,42 @@ function EditTicket() {
             onChange={handleChange}
             className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          
+          {/* Status indicator */}
+          {ticket && (
+            <div className="bg-gray-100 p-3 rounded-lg dark:bg-gray-700">
+              <p className="mb-2">
+                <strong>Current Status:</strong>{' '}
+                <span
+                  className={`px-2 py-1 rounded-lg text-white font-semibold ${
+                    ticket.status === 'sold' 
+                      ? 'bg-red-500' 
+                      : ticket.status === 'under_discussion'
+                      ? 'bg-purple-500'
+                      : 'bg-green-500'
+                  }`}
+                >
+                  {ticket.status === 'sold' 
+                    ? 'Sold Out' 
+                    : ticket.status === 'under_discussion'
+                    ? 'Under Discussion'
+                    : 'Available'}
+                </span>
+              </p>
+              
+              {/* Show Mark as Sold button if ticket is not already sold */}
+              {ticket.status !== 'sold' && (
+                <button
+                  type="button"
+                  onClick={handleMarkAsSold}
+                  className="bg-amber-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-amber-600 transition-all shadow-md hover:shadow-lg w-full"
+                >
+                  Mark as Sold
+                </button>
+              )}
+            </div>
+          )}
+          
           <div className="flex justify-between">
             <button
               type="submit"

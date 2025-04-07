@@ -1,13 +1,20 @@
 import mongoose from 'mongoose';
 
+// Define a schema for request status
+const requestSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  status: { type: String, enum: ['pending', 'accepted', 'rejected'], default: 'pending' }
+}, { _id: false });
+
 const ticketSchema = new mongoose.Schema({
   startLocation: String,
   endLocation: String,
   departureTime: Date,
   arrivalTime: Date,
-  status: { type: String, default: 'available' },
+  status: { type: String, default: 'available' }, // available, under_discussion, sold
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  requestedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  // Replace requestedBy with requests that include status
+  requests: [requestSchema],
   price: { 
     type: Number, 
     required: true, 
