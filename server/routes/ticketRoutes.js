@@ -32,9 +32,22 @@ router.post('/', authenticate, async (req, res) => {
 });
 
 // Get All Tickets
-router.get('/', async (req, res) => {
+router.get('/', authenticate, async (req, res) => {
   const tickets = await Ticket.find({ status: 'available' }).populate('createdBy', 'username');
-  res.send(tickets);
+
+  // Add a "pending" status for tickets requested by the current user
+  const userId = req.user.id;
+  const updatedTickets = tickets.map((ticket) => {
+    const isRequestedByUser = ticket.requestedBy.some(
+      (requesterId) => requesterId.toString() === userId
+    );
+    return {
+      ...ticket.toObject(),
+      userStatus: isRequestedByUser ? 'pending' : ticket.status, // Add user-specific status
+    };
+  });
+
+  res.send(updatedTickets);
 });
 
 // Get My Tickets
@@ -46,7 +59,28 @@ router.get('/my-tickets', authenticate, async (req, res) => {
 // Get Requested Tickets
 router.get('/requested-tickets', authenticate, async (req, res) => {
   const tickets = await Ticket.find({ requestedBy: req.user.id }).populate('createdBy', 'username');
-  res.send(tickets);
+
+  // Add a "pending" status for requested tickets
+  const updatedTickets = tickets.map((ticket) => ({
+    ...ticket.toObject(),
+    userStatus: 'pending', // Always show "pending" for requested tickets
+  }));
+
+  res.send(updatedTickets);
+});
+
+// Cancel Ticket Request
+router.post('/:id/cancel-request', authenticate, async (req, res) => {
+  const ticket = await Ticket.findById(req.params.id);
+  if (!ticket) return res.status(404).send({ error: 'Ticket not found' });
+
+  // Remove the user ID from the requestedBy array
+  ticket.requestedBy = ticket.requestedBy.filter(
+    (userId) => userId.toString() !== req.user.id
+  );
+
+  await ticket.save();
+  res.send({ message: 'Request canceled successfully', ticket });
 });
 
 // Request Ticket
@@ -54,9 +88,14 @@ router.post('/:id/request', authenticate, async (req, res) => {
   const ticket = await Ticket.findById(req.params.id);
   if (!ticket) return res.status(404).send({ error: 'Ticket not found' });
 
+  // Check if the user has already requested the ticket
+  if (ticket.requestedBy.includes(req.user.id)) {
+    return res.status(400).send({ error: 'You have already requested this ticket' });
+  }
+
   ticket.requestedBy.push(req.user.id);
   await ticket.save();
-  res.send(ticket);
+  res.send({ message: 'Request sent successfully', ticket });
 });
 
 // Get Single Ticket

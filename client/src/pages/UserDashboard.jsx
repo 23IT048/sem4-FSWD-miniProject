@@ -133,6 +133,24 @@ function UserDashboard() {
                   <strong>Price:</strong> ₹{ticket.price}
                 </p>
                 <p>
+                  <strong>Status:</strong>{' '}
+                  <span
+                    className={`px-2 py-1 rounded-lg text-white font-semibold ${
+                      ticket.userStatus === 'pending'
+                        ? 'bg-yellow-500'
+                        : ticket.status === 'available'
+                        ? 'bg-green-500'
+                        : 'bg-red-500'
+                    }`}
+                  >
+                    {ticket.userStatus === 'pending'
+                      ? 'Pending'
+                      : ticket.status === 'available'
+                      ? 'Available'
+                      : 'Sold Out'}
+                  </span>
+                </p>
+                <p>
                   <strong>Created By:</strong> {ticket.createdBy.username}
                 </p>
               </div>
